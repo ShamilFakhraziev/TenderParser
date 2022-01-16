@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "Gj++c/yuP2ypwYZy75BD9ceueUZcAOqOStK649FMGsO5/G9mqsy5l0O9gawXjlcrnElg9NipvdwKI3o7nmiPnA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Shamil\\Documents\\CSharpProjects\\cproj\\TenderParser\\TenderParser\\TenderParser.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Shamil\\.nuget\\packages\\htmlagilitypack\\1.11.36\\htmlagilitypack.1.11.36.nupkg.sha512",
+    "C:\\Users\\Shamil\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

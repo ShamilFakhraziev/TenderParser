@@ -1,0 +1,63 @@
+﻿@model TenderVM;
+
+<form method="post" asp-controller="Tender" asp-action="ViewTender" enctype="multipart/form-data" class="align-content-center col-md-8 mt-1 ml-1">
+    <label>Введите номер тендера: </label> <br />
+    <input type="number" name="id" required="required" />
+    <input type="submit" value="Найти" class="btn btn-primary btn-sm ml-2 mb-1" />
+</form>
+
+@if (Model != null)
+{
+    @if (Model.exception != null)
+    {
+        <h4 class="col-md-8 mt-2 ml-1">Что то пошло не так</h4>
+        <p class="col-md-8 mt-2 ml-1">>@Model.exception.Message Перезапустите приложение и попробуйте снова.</p>
+    }
+    else
+    {
+        @if (Model.tender != null)
+        {
+            <div>
+                <h4 class="text-center mt-4">Информация о тендере</h4>
+                <div class="col-md-8 mt-1 ml-1">
+                    <p>Номер тендера: @Model.tender.Id</p>
+                    <p>Наименование тендера: @Model.tender.TradeName</p>
+                    <p>Текущий статус: @Model.tender.TradeStateName</p>
+                    <p>Наименование заказчика: @Model.tender.CustomerFullName</p>
+                    <p>НМЦ: @Model.tender.InitialPrice</p>
+                    <p>Дата публикации: @Model.tender.PublicationDate (мск)</p>
+                    <p>Дата окончания подачи заявок: @Model.tender.FillingApplicationEndDate (мск)</p>
+                    <p>Место поставки: @Model.tender.DeliveryPlace</p>
+                </div>
+                <div class="mt-4">
+                    <h5 class="text-center mb-3">Список позиций лота:</h5>
+                    @foreach (var lot in Model.tender.LotPositionsList)
+                    {<div class="col-md-8 mt-1 ml-1">
+                            <p>@lot.Name</p>
+                            <p>@lot.UnitOfMeasurement</p>
+                            <p>@lot.Count</p>
+                            <p>@lot.UnitPrice</p>
+                        </div>
+                        <hr />
+                    }
+                </div>
+                <div>
+                    <h5 class="text-center">Список документов: </h5>
+                    @foreach (var doc in Model.tender.DocumentsList)
+                    {
+                        <div class="col-md-4 mt-1 ml-1">
+                            <p>@doc.FileName</p>
+                            <a href="@doc.Url">Скачать</a>
+                        </div>
+                        <hr />
+                    }
+                </div>
+            </div>
+        }
+
+    }
+}
+else
+{
+    <h4 class="col-md-8 mt-2 ml-1">@ViewBag.ErrorMessage</h4>
+}
